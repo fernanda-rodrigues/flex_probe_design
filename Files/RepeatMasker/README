@@ -1,0 +1,12 @@
+##########################################################################
+## RepeatMasker files - Processing description   		   	##
+## Author: Fernanda Martins Rodrigues, PhD (fernanda@wustl.edu)		##
+## Date: 07/30/2025							##
+##########################################################################
+
+## RepeatMasker files are used in order to detect whether any designed probes overlap annotated repeat or low complexity sequences.
+## RepeatMasker files were downloaded and processed to .bed format as follows:
+
+wget http://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/rmsk.txt.gz
+zcat rmsk.txt.gz | awk '{OFS="\t"; print $6,$7,$8,$10,$11,$12}' > rmsk_hg38.bed
+awk '$6 ~ /Simple_repeat|Low_complexity/' rmsk_hg38.bed > simple_repeat_low_complexity_hg38.bed
